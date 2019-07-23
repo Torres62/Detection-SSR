@@ -24,12 +24,12 @@ def detection(image, dir, execution_path):
     detector.setModelPath( os.path.join(execution_path , "resnet50_coco_best_v2.0.1.h5"))
     detector.loadModel()
     custom = detector.CustomObjects(person=True, car=True, motorcycle=True)
-    detections = detector.detectCustomObjectsFromImage(custom_objects=custom , input_image=image_path, output_image_path=os.path.join(execution_path , image), minimum_percentage_probability=50)
+    detections = detector.detectCustomObjectsFromImage(custom_objects=custom , input_image=image_path, output_image_path=os.path.join(execution_path , image), minimum_percentage_probability=40)
 
     if detections != []:
         file = open(r'/home/torres/Documents/teste.txt', "a")
         file.write(image + "\n")
         file.close()
 
-    # file_remove = os.path.join(execution_path, "imagenew.jpg")
-    # os.remove(file_remove)
+    file_remove = os.path.join(execution_path, "imagenew.jpg")
+    os.remove(file_remove)
