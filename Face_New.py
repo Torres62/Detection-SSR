@@ -31,5 +31,5 @@ def detection(image, dir, execution_path):
         file.write(image + "\n")
         file.close()
 
-    file_remove = os.path.join(execution_path, "imagenew.jpg")
+    file_remove = os.path.join(execution_path, image)
     os.remove(file_remove)
