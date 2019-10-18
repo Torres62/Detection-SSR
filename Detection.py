@@ -10,24 +10,25 @@ def controller():
     detector.loadModel()
     custom_objects = detector.CustomObjects(car=True, motorcycle=True, person=True)
 
-    src = r'C:\Users\Rafael\Desktop\TESTE'
+    src = r'D:\FotosFrontais\Entregavel_07'
+    dst = r'S:\Prefeituras\Taubate_2018\Videos_e_fotos\FotosFrontais\Entregavel_07'
     path = os.listdir(src)
     contador = 1
     path_len = len(path) + 1
 
     for eachImage in path:
         img = os.path.join(src, eachImage)
-        model(src, img, custom_objects, detector, eachImage)
+        model(img, custom_objects, detector, eachImage, dst)
         print(f'Imagem: {contador} de {path_len} processada')
         contador += 1
 
-def model(src, img, custom_objects, detector, eachImage):
+def model(img, custom_objects, detector, eachImage, dst):
 
     if (eachImage.endswith(".jpg") or  eachImage.endswith(".png")):
         detected_image_array, detections = detector.detectCustomObjectsFromImage(custom_objects=custom_objects, input_image=img, output_type="array" , minimum_percentage_probability=60)
 
         if detections != []:
-            txtPath = os.path.join(src, "Entregavel1.txt")
+            txtPath = os.path.join(dst, "Entregavel07.txt")
             txtFile = open(txtPath, "a")
             txtFile.write(eachImage + "\n")
             txtFile.close()
